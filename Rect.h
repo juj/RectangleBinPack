@@ -6,6 +6,14 @@
 #pragma once
 
 #include <vector>
+#include <cassert>
+
+#ifdef _DEBUG
+/// debug_assert is an assert that also requires debug mode to be defined.
+#define debug_assert(x) assert(x)
+#else
+#define debug_assert(x)
+#endif
 
 using namespace std;
 

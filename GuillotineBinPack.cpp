@@ -148,9 +148,7 @@ void GuillotineBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &
 		usedRectangles.push_back(newNode);
 
 		// Check that we're really producing correct packings here.
-#ifdef _DEBUG
-		assert(disjointRects.Add(newNode) == true);
-#endif
+		debug_assert(disjointRects.Add(newNode) == true);
 	}
 }
 
@@ -361,9 +359,7 @@ Rect GuillotineBinPack::Insert(int width, int height, bool merge, FreeRectChoice
 	usedRectangles.push_back(newRect);
 
 	// Check that we're really producing correct packings here.
-#ifdef _DEBUG
-	assert(disjointRects.Add(newRect) == true);
-#endif
+	debug_assert(disjointRects.Add(newRect) == true);
 
 	return newRect;
 }
@@ -450,9 +446,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			bestNode.height = height;
 			bestScore = std::numeric_limits<int>::min();
 			*nodeIndex = i;
-#ifdef _DEBUG
-			assert(disjointRects.Disjoint(bestNode));
-#endif
+			debug_assert(disjointRects.Disjoint(bestNode));
 			break;
 		}
 		// If this is a perfect fit sideways, choose it.
@@ -464,9 +458,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			bestNode.height = width;
 			bestScore = std::numeric_limits<int>::min();
 			*nodeIndex = i;
-#ifdef _DEBUG
-			assert(disjointRects.Disjoint(bestNode));
-#endif
+			debug_assert(disjointRects.Disjoint(bestNode));
 			break;
 		}
 		// Does the rectangle fit upright?
@@ -482,9 +474,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 				bestNode.height = height;
 				bestScore = score;
 				*nodeIndex = i;
-#ifdef _DEBUG
-				assert(disjointRects.Disjoint(bestNode));
-#endif
+				debug_assert(disjointRects.Disjoint(bestNode));
 			}
 		}
 		// Does the rectangle fit sideways?
@@ -500,9 +490,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 				bestNode.height = width;
 				bestScore = score;
 				*nodeIndex = i;
-#ifdef _DEBUG
-				assert(disjointRects.Disjoint(bestNode));
-#endif
+				debug_assert(disjointRects.Disjoint(bestNode));
 			}
 		}
 	}
@@ -591,10 +579,8 @@ void GuillotineBinPack::SplitFreeRectAlongAxis(const Rect &freeRect, const Rect 
 	if (right.width > 0 && right.height > 0)
 		freeRectangles.push_back(right);
 
-#ifdef _DEBUG
-	assert(disjointRects.Disjoint(bottom));
-	assert(disjointRects.Disjoint(right));
-#endif
+	debug_assert(disjointRects.Disjoint(bottom));
+	debug_assert(disjointRects.Disjoint(right));
 }
 
 void GuillotineBinPack::MergeFreeList()
