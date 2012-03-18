@@ -7,6 +7,8 @@
 
 #include <vector>
 
+using namespace std;
+
 struct RectSize
 {
 	int width;

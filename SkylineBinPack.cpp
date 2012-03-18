@@ -7,8 +7,11 @@
 */
 #include <utility>
 #include <iostream>
+#include <limits>
 
 #include <cassert>
+#include <cstring>
+#include <cmath>
 
 #include "SkylineBinPack.h"
 
@@ -187,7 +190,7 @@ bool SkylineBinPack::RectangleFits(int skylineNodeIndex, int width, int height, 
 
 void SkylineBinPack::AddWasteMapArea(int skylineNodeIndex, int width, int height, int y)
 {
-	int wastedArea = 0;
+	// int wastedArea = 0; // unused
 	const int rectLeft = skyLine[skylineNodeIndex].x;
 	const int rectRight = rectLeft + width;
 	for(; skylineNodeIndex < (int)skyLine.size() && skyLine[skylineNodeIndex].x < rectRight; ++skylineNodeIndex)

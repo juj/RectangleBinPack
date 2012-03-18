@@ -7,8 +7,11 @@
 */
 #include <utility>
 #include <iostream>
+#include <limits>
 
 #include <cassert>
+#include <cstring>
+#include <cmath>
 
 #include "MaxRectsBinPack.h"
 

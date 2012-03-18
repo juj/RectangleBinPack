@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include <cassert>
+#include <cstring>
 
 #include "ShelfBinPack.h"
 
@@ -17,9 +18,9 @@ using namespace std;
 ShelfBinPack::ShelfBinPack()
 :binWidth(0),
 binHeight(0),
-useWasteMap(false),
 currentY(0),
-usedSurfaceArea(0)
+usedSurfaceArea(0),
+useWasteMap(false)
 {
 }
 
