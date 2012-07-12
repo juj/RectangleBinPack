@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RectangleBinPack", "RectangleBinPack.vcxproj", "{CB584136-5A78-42BC-A2EB-367B9E60290D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaxRectsBinPackTest", "..\MaxRectsBinPackTest\MaxRectsBinPackTest.vcxproj", "{D20BF580-101C-4705-93FC-8240A728203E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{CB584136-5A78-42BC-A2EB-367B9E60290D}.Debug|Win32.Build.0 = Debug|Win32
 		{CB584136-5A78-42BC-A2EB-367B9E60290D}.Release|Win32.ActiveCfg = Release|Win32
 		{CB584136-5A78-42BC-A2EB-367B9E60290D}.Release|Win32.Build.0 = Release|Win32
+		{D20BF580-101C-4705-93FC-8240A728203E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D20BF580-101C-4705-93FC-8240A728203E}.Debug|Win32.Build.0 = Debug|Win32
+		{D20BF580-101C-4705-93FC-8240A728203E}.Release|Win32.ActiveCfg = Release|Win32
+		{D20BF580-101C-4705-93FC-8240A728203E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
