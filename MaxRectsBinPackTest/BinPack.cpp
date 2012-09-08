@@ -51,7 +51,6 @@ int main(int argc, char **argv)
 		printf("failed to place %d rects.\n", (int)rects.size());
 		return 1;
 	} else {
-		printf("success\n");
 		sort(sortedrects.begin(), sortedrects.end(), compareRectIds);
 		for (vector<Rect>::iterator it = sortedrects.begin(); it != sortedrects.end(); it++) {
 			printf ("%d %d\n", it->x, it->y);
