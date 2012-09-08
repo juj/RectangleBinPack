@@ -101,6 +101,7 @@ void MaxRectsBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &ds
 				bestScore1 = score1;
 				bestScore2 = score2;
 				bestNode = newNode;
+				bestNode.id = rects[i].id;
 				bestRectIndex = i;
 			}
 		}
