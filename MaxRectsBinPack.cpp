@@ -239,6 +239,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 				bestLongSideFit = longSideFit;
 			}
 		}
+		/*
 
 		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
@@ -257,6 +258,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 				bestLongSideFit = flippedLongSideFit;
 			}
 		}
+		*/
 	}
 	return bestNode;
 }
