@@ -101,6 +101,7 @@ void MaxRectsBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &ds
 				bestScore1 = score1;
 				bestScore2 = score2;
 				bestNode = newNode;
+				bestNode.id = rects[i].id;
 				bestRectIndex = i;
 			}
 		}
@@ -111,6 +112,8 @@ void MaxRectsBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &ds
 		PlaceRect(bestNode);
 		rects.erase(rects.begin() + bestRectIndex);
 	}
+
+	dst.insert(dst.begin(), usedRectangles.begin(), usedRectangles.end());
 }
 
 void MaxRectsBinPack::PlaceRect(const Rect &node)
@@ -236,6 +239,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 				bestLongSideFit = longSideFit;
 			}
 		}
+		/*
 
 		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
@@ -254,6 +258,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 				bestLongSideFit = flippedLongSideFit;
 			}
 		}
+		*/
 	}
 	return bestNode;
 }
