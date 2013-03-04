@@ -51,11 +51,9 @@ void GuillotineBinPack::Init(int width, int height)
 	freeRectangles.push_back(n);
 }
 
-void GuillotineBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &dst, bool merge, 
+void GuillotineBinPack::Insert(std::vector<RectSize> &rects, bool merge, 
 	FreeRectChoiceHeuristic rectChoice, GuillotineSplitHeuristic splitMethod)
 {
-	dst.clear();
-
 	// Remember variables about the best packing choice we have made so far during the iteration process.
 	int bestFreeRect = 0;
 	int bestRect = 0;

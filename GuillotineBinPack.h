@@ -61,11 +61,10 @@ public:
 
 	/// Inserts a list of rectangles into the bin.
 	/// @param rects The list of rectangles to add. This list will be destroyed in the packing process.
-	/// @param dst The outputted list of rectangles. Note that the indices will not correspond to the input indices.
 	/// @param merge If true, performs Rectangle Merge operations during the packing process.
 	/// @param rectChoice The free rectangle choice heuristic rule to use.
 	/// @param splitMethod The free rectangle split heuristic rule to use.
-	void Insert(std::vector<RectSize> &rects, std::vector<Rect> &dst, bool merge, 
+	void Insert(std::vector<RectSize> &rects, bool merge, 
 		FreeRectChoiceHeuristic rectChoice, GuillotineSplitHeuristic splitMethod);
 
 // Implements GUILLOTINE-MAXFITTING, an experimental heuristic that's really cool but didn't quite work in practice.
