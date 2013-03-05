@@ -10,6 +10,8 @@
 
 #include "clb/Core/Ptr.h"
 
+namespace rbp {
+
 /** Performs 'discrete online rectangle packing into a rectangular bin' by maintaining 
 	a binary tree of used and free rectangles of the bin. There are several variants
 	of bin packing problems, and this packer is characterized by:
@@ -84,5 +86,7 @@ private:
 	/// Inserts a new rectangle in the subtree rooted at the given node.
 	Node *Insert(Node *node, int width, int height);
 };
+
+}
 
 #endif

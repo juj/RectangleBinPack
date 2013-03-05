@@ -12,6 +12,8 @@
 #include "Rect.h"
 #include "GuillotineBinPack.h"
 
+namespace rbp {
+
 /** Implements bin packing algorithms that use the SKYLINE data structure to store the bin contents. Uses
 	GuillotineBinPack as the waste map. */
 class SkylineBinPack
@@ -92,3 +94,5 @@ private:
 	/// Merges all skyline nodes that are at the same level.
 	void MergeSkylines();
 };
+
+}

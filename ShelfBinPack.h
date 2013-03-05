@@ -12,6 +12,8 @@
 
 #include <vector>
 
+namespace rbp {
+
 /** ShelfBinPack implements different bin packing algorithms that use the SHELF data structure. ShelfBinPack
 also uses GuillotineBinPack for the waste map if it is enabled. */
 class ShelfBinPack
@@ -101,3 +103,5 @@ private:
 	/// Creates a new shelf of the given starting height, which will become the topmost 'open' shelf.
 	void StartNewShelf(int startingHeight);
 };
+
+}

@@ -15,6 +15,8 @@
 
 #include "MaxRectsBinPack.h"
 
+namespace rbp {
+
 using namespace std;
 
 MaxRectsBinPack::MaxRectsBinPack()
@@ -510,4 +512,6 @@ void MaxRectsBinPack::PruneFreeList()
 				--j;
 			}
 		}
+}
+
 }
