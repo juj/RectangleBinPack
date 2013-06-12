@@ -13,6 +13,8 @@
 
 #include "ShelfBinPack.h"
 
+namespace rbp {
+
 using namespace std;
 
 ShelfBinPack::ShelfBinPack()
@@ -390,4 +392,6 @@ void ShelfBinPack::MoveShelfToWasteMap(Shelf &shelf)
 float ShelfBinPack::Occupancy() const
 {
 	return (float)usedSurfaceArea / (binWidth * binHeight);
+}
+
 }

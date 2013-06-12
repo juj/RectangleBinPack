@@ -17,6 +17,8 @@
 
 #include "ShelfNextFitBinPack.h"
 
+namespace rbp {
+
 using namespace std;
 
 void ShelfNextFitBinPack::Init(int width, int height)
@@ -96,4 +98,6 @@ ShelfNextFitBinPack::Node ShelfNextFitBinPack::Insert(int width, int height)
 float ShelfNextFitBinPack::Occupancy() const
 {
 	return (float)usedSurfaceArea / (binWidth * binHeight);
+}
+
 }

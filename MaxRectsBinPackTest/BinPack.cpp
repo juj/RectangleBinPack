@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
+	
 	if (argc < 5 || argc % 2 != 1)
 	{
 		printf("Usage: MaxRectsBinPackTest binWidth binHeight w_0 h_0 w_1 h_1 w_2 h_2 ... w_n h_n\n");
@@ -10,7 +11,9 @@ int main(int argc, char **argv)
 		printf("Example: MaxRectsBinPackTest 256 256 30 20 50 20 10 80 90 20\n");
 		return 0;
 	}
-
+	
+	using namespace rbp;
+	
 	// Create a bin to pack to, use the bin size from command line.
 	MaxRectsBinPack bin;
 	int binWidth = atoi(argv[1]);
