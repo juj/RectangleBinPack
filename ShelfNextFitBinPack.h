@@ -13,6 +13,8 @@
 
 #include <vector>
 
+namespace rbp {
+
 class ShelfNextFitBinPack
 {
 public:
@@ -43,3 +45,5 @@ private:
 
 	unsigned long usedSurfaceArea;
 };
+
+}

@@ -7,6 +7,8 @@
 */
 #include "RectangleBinPack.h"
 
+namespace rbp {
+
 /** Restarts the packing process, clearing all previously packed rectangles and
 	sets up a new bin of a given initial size. These bin dimensions stay fixed during
 	the whole packing process, i.e. to change the bin size, the packing must be
@@ -117,4 +119,6 @@ RectangleBinPack::Node *RectangleBinPack::Insert(RectangleBinPack::Node *node, i
 	node->width = width;
 	node->height = height;
 	return node;
+}
+
 }

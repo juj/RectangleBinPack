@@ -11,6 +11,8 @@
 
 #include "Rect.h"
 
+namespace rbp {
+
 /** GuillotineBinPack implements different variants of bin packer algorithms that use the GUILLOTINE data structure
 	to keep track of the free space of the bin where rectangles may be placed. */
 class GuillotineBinPack
@@ -128,3 +130,5 @@ private:
 	/// Splits the given L-shaped free rectangle into two new free rectangles along the given fixed split axis.
 	void SplitFreeRectAlongAxis(const Rect &freeRect, const Rect &placedRect, bool splitHorizontal);
 };
+
+}
