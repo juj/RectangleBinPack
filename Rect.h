@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <cassert>
+#include <cstdlib>
 
 #ifdef _DEBUG
 /// debug_assert is an assert that also requires debug mode to be defined.
