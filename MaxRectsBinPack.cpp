@@ -50,8 +50,9 @@ void MaxRectsBinPack::Init(int width, int height)
 Rect MaxRectsBinPack::Insert(int width, int height, FreeRectChoiceHeuristic method)
 {
 	Rect newNode;
-	int score1; // Unused in this function. We don't need to know the score after finding the position.
-	int score2;
+	// Unused in this function. We don't need to know the score after finding the position.
+	int score1 = std::numeric_limits<int>::max();
+	int score2 = std::numeric_limits<int>::max();
 	switch(method)
 	{
 		case RectBestShortSideFit: newNode = FindPositionForNewNodeBestShortSideFit(width, height, score1, score2); break;
@@ -176,6 +177,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBottomLeft(int width, int height, in
 	memset(&bestNode, 0, sizeof(Rect));
 
 	bestY = std::numeric_limits<int>::max();
+	bestX = std::numeric_limits<int>::max();
 
 	for(size_t i = 0; i < freeRectangles.size(); ++i)
 	{
@@ -217,6 +219,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 	memset(&bestNode, 0, sizeof(Rect));
 
 	bestShortSideFit = std::numeric_limits<int>::max();
+	bestLongSideFit = std::numeric_limits<int>::max();
 
 	for(size_t i = 0; i < freeRectangles.size(); ++i)
 	{
@@ -266,6 +269,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestLongSideFit(int width, int heigh
 	Rect bestNode;
 	memset(&bestNode, 0, sizeof(Rect));
 
+	bestShortSideFit = std::numeric_limits<int>::max();
 	bestLongSideFit = std::numeric_limits<int>::max();
 
 	for(size_t i = 0; i < freeRectangles.size(); ++i)
@@ -317,6 +321,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestAreaFit(int width, int height,
 	memset(&bestNode, 0, sizeof(Rect));
 
 	bestAreaFit = std::numeric_limits<int>::max();
+	bestShortSideFit = std::numeric_limits<int>::max();
 
 	for(size_t i = 0; i < freeRectangles.size(); ++i)
 	{
