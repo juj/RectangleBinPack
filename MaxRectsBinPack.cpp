@@ -25,13 +25,14 @@ binHeight(0)
 {
 }
 
-MaxRectsBinPack::MaxRectsBinPack(int width, int height)
+MaxRectsBinPack::MaxRectsBinPack(int width, int height, bool allowFlip) : m_AllowFlip(allowFlip)
 {
 	Init(width, height);
 }
 
-void MaxRectsBinPack::Init(int width, int height)
+void MaxRectsBinPack::Init(int width, int height, bool allowFlip)
 {
+	m_AllowFlip = allowFlip;
 	binWidth = width;
 	binHeight = height;
 
@@ -195,7 +196,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBottomLeft(int width, int height, in
 				bestX = freeRectangles[i].x;
 			}
 		}
-		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
+		if (m_AllowFlip && freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
 			int topSideY = freeRectangles[i].y + width;
 			if (topSideY < bestY || (topSideY == bestY && freeRectangles[i].x < bestX))
@@ -242,7 +243,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestShortSideFit(int width, int heig
 			}
 		}
 
-		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
+		if (m_AllowFlip && freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
 			int flippedLeftoverHoriz = abs(freeRectangles[i].width - height);
 			int flippedLeftoverVert = abs(freeRectangles[i].height - width);
@@ -293,7 +294,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestLongSideFit(int width, int heigh
 			}
 		}
 
-		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
+		if (m_AllowFlip && freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
 			int leftoverHoriz = abs(freeRectangles[i].width - height);
 			int leftoverVert = abs(freeRectangles[i].height - width);
@@ -345,7 +346,7 @@ Rect MaxRectsBinPack::FindPositionForNewNodeBestAreaFit(int width, int height,
 			}
 		}
 
-		if (freeRectangles[i].width >= height && freeRectangles[i].height >= width)
+		if (m_AllowFlip && freeRectangles[i].width >= height && freeRectangles[i].height >= width)
 		{
 			int leftoverHoriz = abs(freeRectangles[i].width - height);
 			int leftoverVert = abs(freeRectangles[i].height - width);
