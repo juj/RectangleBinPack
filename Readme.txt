@@ -8,8 +8,11 @@ For more information, read the paper, which is also contained as a .pdf in this 
 
 The repository contains a build solution for Visual C++ 2010. It is configured to build a single static
 library of the algorithms. The preferred method of embedding these algorithms into your own code is to
-simply copy the code files into your own project and build them along your own build system. There are
-no build scripts for other platforms provided.
+simply copy the code files into your own project and build them along your own build system. 
+
+To use these algorithms in Python, you can make use of Boost.Python to enable interoperability between the C++ algorithms and your Python code.
+
+There are no build scripts for other platforms provided.
 
 For more information, see a series of blog posts at
 
