@@ -22,6 +22,7 @@ public:
 	MaxRectsBinPack();
 
 	/// Instantiates a bin of the given size.
+	/// @param allowFlip Specifies whether the packing algorithm is allowed to rotate the input rectangles by 90 degrees to consider a better placement.
 	MaxRectsBinPack(int width, int height, bool allowFlip = true);
 
 	/// (Re)initializes the packer to an empty bin of width x height units. Call whenever
@@ -54,7 +55,7 @@ private:
 	int binWidth;
 	int binHeight;
 
-	bool m_AllowFlip;
+	bool binAllowFlip;
 
 	std::vector<Rect> usedRectangles;
 	std::vector<Rect> freeRectangles;
