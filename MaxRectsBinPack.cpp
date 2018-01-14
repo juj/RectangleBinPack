@@ -1,5 +1,5 @@
 /** @file MaxRectsBinPack.cpp
-	@author Jukka Jyl‰nki
+	@author Jukka Jyl√§nki
 
 	@brief Implements different bin packer algorithms that use the MAXRECTS data structure.
 
@@ -112,6 +112,7 @@ void MaxRectsBinPack::Insert(std::vector<RectSize> &rects, std::vector<Rect> &ds
 			return;
 
 		PlaceRect(bestNode);
+		dst.push_back(bestNode);
 		rects.erase(rects.begin() + bestRectIndex);
 	}
 }
