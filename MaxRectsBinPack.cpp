@@ -133,7 +133,6 @@ void MaxRectsBinPack::PlaceRect(const Rect &node)
 	PruneFreeList();
 
 	usedRectangles.push_back(node);
-	//		dst.push_back(bestNode); ///\todo Refactor so that this compiles.
 }
 
 Rect MaxRectsBinPack::ScoreRect(int width, int height, FreeRectChoiceHeuristic method, int &score1, int &score2) const
