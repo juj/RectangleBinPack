@@ -1,5 +1,5 @@
 /** @file GuillotineBinPack.cpp
-	@author Jukka Jylänki
+	@author Jukka Jylï¿½nki
 
 	@brief Implements different bin packer algorithms that use the GUILLOTINE data structure.
 
@@ -25,15 +25,16 @@ binHeight(0)
 {
 }
 
-GuillotineBinPack::GuillotineBinPack(int width, int height)
+GuillotineBinPack::GuillotineBinPack(int width, int height, bool allowFlip)
 {
-	Init(width, height);
+	Init(width, height, allowFlip);
 }
 
-void GuillotineBinPack::Init(int width, int height)
+void GuillotineBinPack::Init(int width, int height, bool allowFlip)
 {
 	binWidth = width;
 	binHeight = height;
+    binAllowFlip = allowFlip;
 
 #ifdef _DEBUG
 	disjointRects.Clear();
@@ -83,7 +84,7 @@ void GuillotineBinPack::Insert(std::vector<RectSize> &rects, bool merge,
 					break;
 				}
 				// If flipping this rectangle is a perfect match, pick that then.
-				else if (rects[j].height == freeRectangles[i].width && rects[j].width == freeRectangles[i].height)
+				else if (binAllowFlip && rects[j].height == freeRectangles[i].width && rects[j].width == freeRectangles[i].height)
 				{
 					bestFreeRect = i;
 					bestRect = j;
@@ -105,7 +106,7 @@ void GuillotineBinPack::Insert(std::vector<RectSize> &rects, bool merge,
 					}
 				}
 				// If not, then perhaps flipping sideways will make it fit?
-				else if (rects[j].height <= freeRectangles[i].width && rects[j].width <= freeRectangles[i].height)
+				else if (binAllowFlip && rects[j].height <= freeRectangles[i].width && rects[j].width <= freeRectangles[i].height)
 				{
 					int score = ScoreByHeuristic(rects[j].height, rects[j].width, freeRectangles[i], rectChoice);
 					if (score < bestScore)
@@ -450,7 +451,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			break;
 		}
 		// If this is a perfect fit sideways, choose it.
-		else if (height == freeRectangles[i].width && width == freeRectangles[i].height)
+		else if (binAllowFlip && height == freeRectangles[i].width && width == freeRectangles[i].height)
 		{
 			bestNode.x = freeRectangles[i].x;
 			bestNode.y = freeRectangles[i].y;
@@ -478,7 +479,7 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			}
 		}
 		// Does the rectangle fit sideways?
-		else if (height <= freeRectangles[i].width && width <= freeRectangles[i].height)
+		else if (binAllowFlip && height <= freeRectangles[i].width && width <= freeRectangles[i].height)
 		{
 			int score = ScoreByHeuristic(height, width, freeRectangles[i], rectChoice);
 

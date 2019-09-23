@@ -1,5 +1,5 @@
 /** @file GuillotineBinPack.h
-	@author Jukka Jylänki
+	@author Jukka Jylï¿½nki
 
 	@brief Implements different bin packer algorithms that use the GUILLOTINE data structure.
 
@@ -22,11 +22,11 @@ public:
 	GuillotineBinPack();
 
 	/// Initializes a new bin of the given size.
-	GuillotineBinPack(int width, int height);
+	GuillotineBinPack(int width, int height, bool allowFlip = true);
 
 	/// (Re)initializes the packer to an empty bin of width x height units. Call whenever
 	/// you need to restart with a new bin.
-	void Init(int width, int height);
+	void Init(int width, int height, bool allowFlip = true);
 
 	/// Specifies the different choice heuristics that can be used when deciding which of the free subrectangles
 	/// to place the to-be-packed rectangle into.
@@ -91,6 +91,8 @@ public:
 private:
 	int binWidth;
 	int binHeight;
+
+    bool binAllowFlip;
 
 	/// Stores a list of all the rectangles that we have packed so far. This is used only to compute the Occupancy ratio,
 	/// so if you want to have the packer consume less memory, this can be removed.
