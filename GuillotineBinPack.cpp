@@ -19,9 +19,7 @@ namespace rbp {
 
 using namespace std;
 
-GuillotineBinPack::GuillotineBinPack()
-:binWidth(0),
-binHeight(0)
+GuillotineBinPack::GuillotineBinPack() : binWidth(0), binHeight(0)
 {
 }
 
@@ -34,7 +32,7 @@ void GuillotineBinPack::Init(int width, int height, bool allowFlip)
 {
 	binWidth = width;
 	binHeight = height;
-    binAllowFlip = allowFlip;
+	binAllowFlip = allowFlip;
 
 #ifdef _DEBUG
 	disjointRects.Clear();
