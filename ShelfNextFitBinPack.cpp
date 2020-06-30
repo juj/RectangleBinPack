@@ -9,6 +9,7 @@
 
 	This work is released to Public Domain, do whatever you want with it.
 */
+#include <algorithm>
 #include <utility>
 #include <iostream>
 
