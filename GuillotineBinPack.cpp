@@ -35,10 +35,6 @@ void GuillotineBinPack::Init(int width, int height, bool allowFlip)
 	binHeight = height;
 	binAllowFlip = allowFlip;
 
-#ifdef _DEBUG
-	disjointRects.Clear();
-#endif
-
 	// Clear any memory of previously packed rectangles.
 	usedRectangles.clear();
 
@@ -147,8 +143,6 @@ void GuillotineBinPack::Insert(std::vector<RectSize> &rects, bool merge,
 		// Remember the new used rectangle.
 		usedRectangles.push_back(newNode);
 
-		// Check that we're really producing correct packings here.
-		debug_assert(disjointRects.Add(newNode) == true);
 	}
 }
 
@@ -358,9 +352,6 @@ Rect GuillotineBinPack::Insert(int width, int height, bool merge, FreeRectChoice
 	// Remember the new used rectangle.
 	usedRectangles.push_back(newRect);
 
-	// Check that we're really producing correct packings here.
-	debug_assert(disjointRects.Add(newRect) == true);
-
 	return newRect;
 }
 
@@ -446,7 +437,6 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			bestNode.height = height;
 			bestScore = std::numeric_limits<int>::min();
 			*nodeIndex = i;
-			debug_assert(disjointRects.Disjoint(bestNode));
 			break;
 		}
 		// If this is a perfect fit sideways, choose it.
@@ -458,7 +448,6 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 			bestNode.height = width;
 			bestScore = std::numeric_limits<int>::min();
 			*nodeIndex = i;
-			debug_assert(disjointRects.Disjoint(bestNode));
 			break;
 		}
 		// Does the rectangle fit upright?
@@ -474,7 +463,6 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 				bestNode.height = height;
 				bestScore = score;
 				*nodeIndex = i;
-				debug_assert(disjointRects.Disjoint(bestNode));
 			}
 		}
 		// Does the rectangle fit sideways?
@@ -490,7 +478,6 @@ Rect GuillotineBinPack::FindPositionForNewNode(int width, int height, FreeRectCh
 				bestNode.height = width;
 				bestScore = score;
 				*nodeIndex = i;
-				debug_assert(disjointRects.Disjoint(bestNode));
 			}
 		}
 	}
@@ -579,18 +566,10 @@ void GuillotineBinPack::SplitFreeRectAlongAxis(const Rect &freeRect, const Rect 
 	if (right.width > 0 && right.height > 0)
 		freeRectangles.push_back(right);
 
-	debug_assert(disjointRects.Disjoint(bottom));
-	debug_assert(disjointRects.Disjoint(right));
 }
 
 void GuillotineBinPack::MergeFreeList()
 {
-#ifdef _DEBUG
-	DisjointRectCollection test;
-	for(size_t i = 0; i < freeRectangles.size(); ++i)
-		assert(test.Add(freeRectangles[i]) == true);
-#endif
-
 	// Do a Theta(n^2) loop to see if any pair of free rectangles could me merged into one.
 	// Note that we miss any opportunities to merge three rectangles into one. (should call this function again to detect that)
 	for(size_t i = 0; i < freeRectangles.size(); ++i)
@@ -630,11 +609,6 @@ void GuillotineBinPack::MergeFreeList()
 			}
 		}
 
-#ifdef _DEBUG
-	test.Clear();
-	for(size_t i = 0; i < freeRectangles.size(); ++i)
-		assert(test.Add(freeRectangles[i]) == true);
-#endif
 }
 
 }

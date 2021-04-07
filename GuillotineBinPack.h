@@ -101,11 +101,6 @@ private:
 	/// Stores a list of rectangles that represents the free area of the bin. This rectangles in this list are disjoint.
 	std::vector<Rect> freeRectangles;
 
-#ifdef _DEBUG
-	/// Used to track that the packer produces proper packings.
-	DisjointRectCollection disjointRects;
-#endif
-
 	/// Goes through the list of free rectangles and finds the best one to place a rectangle of given size into.
 	/// Running time is Theta(|freeRectangles|).
 	/// @param nodeIndex [out] The index of the free rectangle in the freeRectangles array into which the new
