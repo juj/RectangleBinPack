@@ -423,6 +423,11 @@ bool MaxRectsBinPack::SplitFreeNode(const Rect &freeNode, const Rect &usedNode)
 		usedNode.y >= freeNode.y + freeNode.height || usedNode.y + usedNode.height <= freeNode.y)
 		return false;
 
+	// We add up to four new free rectangles to the free rectangles list below. None of these
+	// four newly added free rectangles can overlap any other three, so keep a mark of them
+	// to avoid testing them against each other.
+	newFreeRectanglesLastSize = newFreeRectangles.size();
+
 	if (usedNode.x < freeNode.x + freeNode.width && usedNode.x + usedNode.width > freeNode.x)
 	{
 		// New node at the top side of the used node.
@@ -471,7 +476,7 @@ void MaxRectsBinPack::InsertNewFreeRectangle(const Rect &newFreeRect)
 	assert(newFreeRect.width > 0);
 	assert(newFreeRect.height > 0);
 
-	for(size_t i = 0; i < newFreeRectangles.size();)
+	for(size_t i = 0; i < newFreeRectanglesLastSize;)
 	{
 		// This new free rectangle is already accounted for?
 		if (IsContainedIn(newFreeRect, newFreeRectangles[i]))
@@ -480,7 +485,11 @@ void MaxRectsBinPack::InsertNewFreeRectangle(const Rect &newFreeRect)
 		// Does this new free rectangle obsolete a previous new free rectangle?
 		if (IsContainedIn(newFreeRectangles[i], newFreeRect))
 		{
-			newFreeRectangles[i] = newFreeRectangles.back();
+			// Remove i'th new free rectangle, but do so by retaining the order
+			// of the older vs newest free rectangles that we may still be placing
+			// in calling function SplitFreeNode().
+			newFreeRectangles[i] = newFreeRectangles[--newFreeRectanglesLastSize];
+			newFreeRectangles[newFreeRectanglesLastSize] = newFreeRectangles.back();
 			newFreeRectangles.pop_back();
 		}
 		else 
@@ -514,6 +523,15 @@ void MaxRectsBinPack::PruneFreeList()
 	// Merge new and old free rectangles to the group of old free rectangles.
 	freeRectangles.insert(freeRectangles.end(), newFreeRectangles.begin(), newFreeRectangles.end());
 	newFreeRectangles.clear();
+
+#ifdef _DEBUG
+	for(size_t i = 0; i < freeRectangles.size(); ++i)
+		for(size_t j = i+1; j < freeRectangles.size(); ++j)
+		{
+			assert(!IsContainedIn(freeRectangles[i], freeRectangles[j]));
+			assert(!IsContainedIn(freeRectangles[j], freeRectangles[i]));
+		}
+#endif
 }
 
 }

@@ -57,6 +57,7 @@ private:
 
 	bool binAllowFlip;
 
+	size_t newFreeRectanglesLastSize;
 	std::vector<Rect> newFreeRectangles;
 
 	std::vector<Rect> usedRectangles;
