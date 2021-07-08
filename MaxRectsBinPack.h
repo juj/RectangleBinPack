@@ -49,13 +49,15 @@ public:
 	Rect Insert(int width, int height, FreeRectChoiceHeuristic method);
 
 	/// Computes the ratio of used surface area to the total bin area.
-	float Occupancy() const;
+	double Occupancy() const;
 
 private:
 	int binWidth;
 	int binHeight;
 
 	bool binAllowFlip;
+
+	std::vector<Rect> newFreeRectangles;
 
 	std::vector<Rect> usedRectangles;
 	std::vector<Rect> freeRectangles;
@@ -78,8 +80,10 @@ private:
 	Rect FindPositionForNewNodeBestAreaFit(int width, int height, int &bestAreaFit, int &bestShortSideFit) const;
 	Rect FindPositionForNewNodeContactPoint(int width, int height, int &contactScore) const;
 
+	void InsertNewFreeRectangle(const Rect &newFreeRect);
+
 	/// @return True if the free node was split.
-	bool SplitFreeNode(Rect freeNode, const Rect &usedNode);
+	bool SplitFreeNode(const Rect &freeNode, const Rect &usedNode);
 
 	/// Goes through the free rectangle list and removes any redundant entries.
 	void PruneFreeList();

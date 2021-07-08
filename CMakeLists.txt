@@ -18,3 +18,10 @@ target_include_directories(RectangleBinPack
 )
 
 add_library(RectangleBinPack::RectangleBinPack ALIAS RectangleBinPack)
+
+add_executable(MaxRectsBinPackTest test/MaxRectsBinPackTest.cpp MaxRectsBinPack.cpp Rect.cpp)
+
+target_include_directories(MaxRectsBinPackTest
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
