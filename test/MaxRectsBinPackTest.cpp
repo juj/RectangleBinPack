@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <stdint.h>
 
 #if defined(__unix__) || defined(__APPLE__) || defined (__CYGWIN__)
@@ -31,13 +32,13 @@ uint64_t tick()
 #elif defined(_POSIX_MONOTONIC_CLOCK)
 	timespec t;
 	clock_gettime(CLOCK_MONOTONIC, &t);
-	return (tick_t)t.tv_sec * 1000 * 1000 * 1000 + (tick_t)t.tv_nsec;
+	return t.tv_sec * 1000 * 1000 * 1000 + t.tv_nsec;
 #elif defined(_POSIX_C_SOURCE)
 	timeval t;
 	gettimeofday(&t, NULL);
-	return (tick_t)t.tv_sec * 1000 * 1000 + (tick_t)t.tv_usec;
+	return t.tv_sec * 1000 * 1000 + t.tv_usec;
 #else
-	return (tick_t)clock();
+	return clock();
 #endif
 }
 
