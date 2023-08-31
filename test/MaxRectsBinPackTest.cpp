@@ -24,8 +24,6 @@ uint64_t tick()
 #if defined(WIN32)
 	LARGE_INTEGER ddwTimer;
 	BOOL success = QueryPerformanceCounter(&ddwTimer);
-	assume(success != 0);
-	MARK_UNUSED(success);
 	return ddwTimer.QuadPart;
 #elif defined(__APPLE__)
 	return mach_absolute_time();
